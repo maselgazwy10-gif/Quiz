@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Digital Logic Quiz Master</title>
+    <title>Digital Logic Quiz Master v2.1</title>
     
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -213,20 +213,20 @@
                 ],
                 answer: 2,
                 explanation: "The formula for Binary to Gray conversion is: G_n = B_n (MSB), and G_i = B_{i+1} XOR B_i for other bits. For a 4-bit system B4,B3,B2,B1: G2 corresponds to the interaction between B3 and B2. Specifically, G2 = B3 XOR B2.",
-                diagramType: "none"
+                diagramType: "kmap-gray-code"
             },
             {
                 id: 13,
-                question: "Identify gates G1 and G2 respectively in the figure to get Y = ABC. (Structure: A,B -> G1 -> G2(with C) -> Y)",
+                question: "Identify gates G1 and G2 respectively in the figure to get Y = ABC. (Structure: A,B -> Inverters -> G1 -> G2(with C) -> Y)",
                 options: [
                 "NAND & OR",
                 "OR & AND",
                 "AND & AND",
                 "NOR & AND"
                 ],
-                answer: 2,
-                explanation: "To get Y = A*B*C, we break it down: First compute (A*B), then multiply by C. G1 takes A and B, so G1 must be an AND gate to output (AB). G2 takes the output of G1 (AB) and C, so G2 must be an AND gate to output (AB)C.",
-                diagramType: "logic-cascade"
+                answer: 3,
+                explanation: "1. Inputs A and B first go through inverters (the triangle with circle), becoming A' and B'. 2. We need an output of AB from G1 to combine with C later. 3. If G1 is a NOR gate, it takes A' and B' to produce (A' + B')'. By DeMorgan's Law, (A' + B')' = A''B'' = AB. 4. Now we have AB going into G2 along with C. To get ABC, G2 must be an AND gate. Therefore: NOR & AND.",
+                diagramType: "logic-inverters-g1g2"
             },
             {
                 id: 14,
@@ -663,6 +663,92 @@
             </svg>
         );
 
+        const KMapGrayCode = () => (
+            <svg viewBox="0 0 300 220" className="w-full max-w-md mx-auto bg-white rounded shadow-sm border border-gray-100 p-2">
+                <rect x="60" y="60" width="160" height="160" fill="white" stroke="black" strokeWidth="2"/>
+                <line x1="100" y1="60" x2="100" y2="220" stroke="black"/>
+                <line x1="140" y1="60" x2="140" y2="220" stroke="black"/>
+                <line x1="180" y1="60" x2="180" y2="220" stroke="black"/>
+                <line x1="60" y1="100" x2="220" y2="100" stroke="black"/>
+                <line x1="60" y1="140" x2="220" y2="140" stroke="black"/>
+                <line x1="60" y1="180" x2="220" y2="180" stroke="black"/>
+                
+                <text x="30" y="80" className="text-xs font-bold">00</text>
+                <text x="30" y="120" className="text-xs font-bold">01</text>
+                <text x="30" y="160" className="text-xs font-bold">11</text>
+                <text x="30" y="200" className="text-xs font-bold">10</text>
+                
+                <text x="80" y="40" className="text-xs font-bold">00</text>
+                <text x="120" y="40" className="text-xs font-bold">01</text>
+                <text x="160" y="40" className="text-xs font-bold">11</text>
+                <text x="200" y="40" className="text-xs font-bold">10</text>
+                
+                <text x="10" y="140" className="text-xs font-bold -rotate-90">B4B3</text>
+                <text x="140" y="20" className="text-xs font-bold">B2B1</text>
+                
+                <text x="80" y="90" className="text-sm font-bold text-gray-400">0</text>
+                <text x="120" y="90" className="text-sm font-bold text-gray-400">0</text>
+                <text x="160" y="90" className="text-sm font-bold text-red-600">1</text>
+                <text x="200" y="90" className="text-sm font-bold text-red-600">1</text>
+                
+                <text x="80" y="130" className="text-sm font-bold text-red-600">1</text>
+                <text x="120" y="130" className="text-sm font-bold text-red-600">1</text>
+                <text x="160" y="130" className="text-sm font-bold text-gray-400">0</text>
+                <text x="200" y="130" className="text-sm font-bold text-gray-400">0</text>
+                
+                <text x="80" y="170" className="text-sm font-bold text-red-600">1</text>
+                <text x="120" y="170" className="text-sm font-bold text-red-600">1</text>
+                <text x="160" y="170" className="text-sm font-bold text-gray-400">0</text>
+                <text x="200" y="170" className="text-sm font-bold text-gray-400">0</text>
+                
+                <text x="80" y="210" className="text-sm font-bold text-gray-400">0</text>
+                <text x="120" y="210" className="text-sm font-bold text-gray-400">0</text>
+                <text x="160" y="210" className="text-sm font-bold text-red-600">1</text>
+                <text x="200" y="210" className="text-sm font-bold text-red-600">1</text>
+            </svg>
+        );
+
+        const LogicInvertersToG1G2 = () => (
+            <svg viewBox="0 0 350 200" className="w-full max-w-md mx-auto bg-white rounded shadow-sm border border-gray-100 p-2">
+                {/* Inputs A and B */}
+                <text x="20" y="55" className="text-sm font-bold">A</text>
+                <text x="20" y="105" className="text-sm font-bold">B</text>
+                
+                {/* Inverter A */}
+                <path d="M50 45 L80 55 L50 65 Z" fill="white" stroke="#0ea5e9" strokeWidth="2"/>
+                <circle cx="84" cy="55" r="4" fill="white" stroke="#0ea5e9" strokeWidth="2"/>
+                <line x1="30" y1="55" x2="50" y2="55" stroke="#0ea5e9" strokeWidth="2"/>
+                
+                {/* Inverter B */}
+                <path d="M50 95 L80 105 L50 115 Z" fill="white" stroke="#0ea5e9" strokeWidth="2"/>
+                <circle cx="84" cy="105" r="4" fill="white" stroke="#0ea5e9" strokeWidth="2"/>
+                <line x1="30" y1="105" x2="50" y2="105" stroke="#0ea5e9" strokeWidth="2"/>
+                
+                {/* G1 Box */}
+                <rect x="120" y="40" width="60" height="80" fill="white" stroke="#0ea5e9" strokeWidth="2"/>
+                <text x="150" y="85" textAnchor="middle" className="text-lg font-bold text-[#0ea5e9]">G1</text>
+                
+                {/* Lines to G1 */}
+                <line x1="88" y1="55" x2="120" y2="55" stroke="#0ea5e9" strokeWidth="2"/>
+                <line x1="88" y1="105" x2="120" y2="105" stroke="#0ea5e9" strokeWidth="2"/>
+                
+                {/* G2 Box */}
+                <rect x="220" y="40" width="60" height="80" fill="white" stroke="#0ea5e9" strokeWidth="2"/>
+                <text x="250" y="85" textAnchor="middle" className="text-lg font-bold text-[#0ea5e9]">G2</text>
+                
+                {/* Line G1 to G2 */}
+                <line x1="180" y1="60" x2="220" y2="60" stroke="#0ea5e9" strokeWidth="2"/>
+                
+                {/* Input C to G2 */}
+                <text x="195" y="145" textAnchor="middle" className="text-sm font-bold text-[#0ea5e9]">C</text>
+                <polyline points="195,130 195,100 220,100" fill="none" stroke="#0ea5e9" strokeWidth="2"/>
+                
+                {/* Output Y */}
+                <line x1="280" y1="80" x2="320" y2="80" stroke="#0ea5e9" strokeWidth="2"/>
+                <text x="330" y="85" className="text-lg font-bold text-[#0ea5e9]">Y</text>
+            </svg>
+        );
+
         // --- APP COMPONENT ---
 
         function App() {
@@ -715,7 +801,7 @@
                     <header className="bg-indigo-600 text-white p-4 shadow-md sticky top-0 z-10">
                         <div className="max-w-4xl mx-auto flex justify-between items-center">
                             <h1 className="text-xl font-bold flex items-center gap-2 cursor-pointer" onClick={() => setMode('welcome')}>
-                                <Icons.RefreshCw /> Digital Logic Master v2.0
+                                <Icons.RefreshCw /> Digital Logic Master v2.1
                             </h1>
                             <nav className="space-x-4 flex">
                                 <button 
@@ -804,6 +890,8 @@
                                                         {q.diagramType === 'kmap-sop' && <KMapSOP />}
                                                         {q.diagramType === 'logic-diagram-mux-ab' && <LogicDiagramMuxAB />}
                                                         {q.diagramType === 'logic-circuit-nors' && <LogicCircuitNORs />}
+                                                        {q.diagramType === 'kmap-gray-code' && <KMapGrayCode />}
+                                                        {q.diagramType === 'logic-inverters-g1g2' && <LogicInvertersToG1G2 />}
                                                     </div>
                                                 </div>
                                             )}
@@ -870,6 +958,8 @@
                                                                 {q.diagramType === 'kmap-sop' && <KMapSOP />}
                                                                 {q.diagramType === 'logic-diagram-mux-ab' && <LogicDiagramMuxAB />}
                                                                 {q.diagramType === 'logic-circuit-nors' && <LogicCircuitNORs />}
+                                                                {q.diagramType === 'kmap-gray-code' && <KMapGrayCode />}
+                                                                {q.diagramType === 'logic-inverters-g1g2' && <LogicInvertersToG1G2 />}
                                                             </div>
                                                         </div>
                                                     )}
