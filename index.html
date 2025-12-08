@@ -346,16 +346,16 @@
                 diagramType: "kmap-sop"
             },
             {
-                id: 23,
-                question: "The minimum number of 2-input NAND gates required to reduce the expression ((A+B)C)D is:",
+               id: 23,
+                question: "The minimum number of 2-input NAND gates required to reduce the expression AB + CD + E is:",
                 options: [
                 "5",
                 "4",
                 "6",
                 "8"
                 ],
-                answer: 1, 
-                explanation: "Logic: D AND (C AND (A OR B)). (A OR B) requires 3 NANDs (A', B', (A'B')'). Then combining with C and D effectively adds logic layers. However, simplified using standard multi-level NAND synthesis, this specific structure ((A+B)C)D can be realized with 4 NAND gates.",
+                answer: 2, 
+                explanation: "1. Generate negations: (AB)' [1 gate], (CD)' [1 gate], E' (inverter) [1 gate]. 2. Combine: NAND((AB)', (CD)', E') corresponds to AB+CD+E. 3. 3-input NAND realization: Since we are restricted to 2-input NANDs, a 3-input NAND takes 3 gates (NAND(X,Y) -> INV -> NAND(Res, Z)). Total = 1 + 1 + 1 + 3 = 6 Gates.",
                 diagramType: "none"
             },
             {
