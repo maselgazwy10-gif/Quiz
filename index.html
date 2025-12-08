@@ -345,19 +345,20 @@
                 explanation: "Based on the provided options and standard K-map patterns often associated with this problem, Option B covers the specific arrangement of 1s in the visual map (which typically shows a checkerboard or specific block pattern). Without the precise cell data, we select B as the key-matched answer.",
                 diagramType: "kmap-sop"
             },
-            {
-               id: 23,
-                question: "The minimum number of 2-input NAND gates required to reduce the expression AB + CD + E is:",
+       {
+                id: 23,
+                question: "The minimum number of 2-input NAND Gates required to reduce the expression ((A+B)C)D is \n Hint: (XZ+YZ) = NAND(NAND(XY), NAND(YZ))",
                 options: [
-                "5",
                 "4",
                 "6",
+                "5",
                 "8"
                 ],
                 answer: 2, 
-                explanation: "1. Generate negations: (AB)' [1 gate], (CD)' [1 gate], E' (inverter) [1 gate]. 2. Combine: NAND((AB)', (CD)', E') corresponds to AB+CD+E. 3. 3-input NAND realization: Since we are restricted to 2-input NANDs, a 3-input NAND takes 3 gates (NAND(X,Y) -> INV -> NAND(Res, Z)). Total = 1 + 1 + 1 + 3 = 6 Gates.",
+                explanation: "1. Expand the expression: F = (A+B)CD = ACD + BCD. 2. Treat 'CD' as a common term Z. Then F = AZ + BZ. 3. Gate 1: Generate Z' = NAND(C,D). 4. Gate 2: Invert to get Z = CD. 5. Gate 3: NAND(A, Z). 6. Gate 4: NAND(B, Z). 7. Gate 5: NAND(Gate3, Gate4) gives the final sum AZ + BZ. Total = 5 Gates.",
                 diagramType: "none"
             },
+
             {
                 id: 24,
                 question: "The logic expression of the output F in the following logic diagram is:",
