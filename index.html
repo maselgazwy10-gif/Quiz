@@ -377,8 +377,8 @@
                     "F = a'b + ab'",
                     "F = (a'b)'"
                 ],
-                answer: 0, 
-                explanation: "1. The Decoder outputs minterms. Top OR connects minterms 0 and 1, simplifying to a'. 2. Bottom OR connects minterms 1 and 2. 3. The NAND gate takes these inputs. The result simplifies to a + b'.",
+                answer: 1, 
+                explanation: "the nand can only output 0 if it recieves two 1's so basically all values of ab give 1 excepect if ab' as then both or gates will output 1 so we have a'b'+a'b+ab simplifeid into a'+ab simplified into a'+b",
                 diagramType: "none"
             },
             {
@@ -1062,6 +1062,7 @@
     </script>
 </body>
 </html>
+
 
 
 
