@@ -359,19 +359,29 @@
                 diagramType: "none"
             },
 
-            {
+             {
                 id: 24,
-                question: "The logic expression of the output F in the following logic diagram is:",
+                question: (
+                    <span>
+                        The logic expression of the output F in the following logic diagram is: <br />
+                        <img 
+                            src="Screenshot 2025-12-08 171304.png" 
+                            alt="Logic Diagram" 
+                            className="max-w-full h-auto mt-4 rounded border border-gray-300" 
+                        />
+                    </span>
+                ),
                 options: [
-                "F(a,b) = a + b'",
-                "F(a,b) = a' + b",
-                "F(a,b) = a'b + ab'",
-                "F(a,b) = (a'b)'"
+                    "F = a + b'",
+                    "F = a' + b",
+                    "F = a'b + ab'",
+                    "F = (a'b)'"
                 ],
-                answer: 1, 
-                explanation: "Tracing the circuit: The MUX is configured such that it selects inputs based on logic. The diagram shows `a` and `b` interacting. Based on the selected correct answer in the source material, the output simplifies to a' + b.",
-                diagramType: "logic-diagram-mux-ab"
+                answer: 0, 
+                explanation: "1. The Decoder outputs minterms. Top OR connects minterms 0 and 1, simplifying to a'. 2. Bottom OR connects minterms 1 and 2. 3. The NAND gate takes these inputs. The result simplifies to a + b'.",
+                diagramType: "none"
             },
+
             {
                 id: 25,
                 question: "The output of the logic circuit given below represents _____ gate. (Structure: NOR inverters feeding a NOR, feeding another inverter)",
@@ -1052,3 +1062,4 @@
     </script>
 </body>
 </html>
+
