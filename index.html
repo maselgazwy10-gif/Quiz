@@ -30,6 +30,7 @@
         .math-frac { display: inline-block; vertical-align: middle; text-align: center; font-size: 0.9em; }
         .math-num { border-bottom: 1px solid black; display: block; padding: 0 2px; }
         .math-den { display: block; padding: 0 2px; }
+        .math-expr { font-family: 'Times New Roman', serif; font-style: italic; }
     </style>
 </head>
 <body class="bg-gray-50 text-gray-800 font-sans">
@@ -112,10 +113,10 @@
             { id: 4, question: (<span>What is the output of the following code? <br /><img src="Screenshot%202025-12-09%20220530.png" alt="C++ Code Snippet" className="max-w-full h-auto mt-4 rounded border border-gray-300 shadow-sm" /></span>), options: ["0000000000", "1111", "0000", "11111111111111111", "compilation error", "00"], answer: 2, explanation: "1. The array 'x' is declared as int x[4] = {1, 2}. This initializes x[0]=1, x[1]=2. In C++, remaining elements of a partially initialized array are set to 0. So x[2]=0 and x[3]=0.\n2. The function argument uses sizeof(x)/sizeof(int). sizeof(x) is 16 bytes (4 ints * 4 bytes). sizeof(int) is 4 bytes. 16/4 = 4. So b = 4.\n3. The loop runs 4 times (implied by the explanation context).\n4. It prints the element at index 2 (x[2]), which is 0.\n5. Result: 0000.", diagramType: "none" },
             { id: 5, question: (<span>What does the following program do? <br /><img src="Screenshot%202025-12-09%20221325.png" alt="C++ Code Snippet" className="max-w-full h-auto mt-4 rounded border border-gray-300 shadow-sm" /></span>), options: ["only prints a message showing the result", "computes n^3", "computes n+(n+1)+(n+2)", "program will return a compilation error", "0", "computes 3^n"], answer: 1, explanation: "The function doo(x, y) initializes 'result' to 1. The loop runs 'y' times, and in each iteration, it multiplies 'result' by 'x'. This is the mathematical definition of exponentiation: x * x * ... (y times) = x^y. Therefore, with inputs n and 3, it computes n^3.", diagramType: "none" },
             { id: 6, question: "Assuming string year = \"1997\", which of the following is a correct syntax to get the int value of the year?", options: ["atoi((char[])year);", "atoi(year.c_array());", "atoi(year.to_c_arr());", "atoi(year.c_str());"], answer: 3, explanation: "The function 'atoi' (ASCII to Integer) requires a C-style string (a null-terminated character array) as an argument. The standard C++ string class provides the .c_str() method to return a pointer to a read-only C-style string array, which is compatible with atoi.", diagramType: "none" },
-            { id: 7, question: (<span>What is the output of the following code? <br /><img src="Screenshot%202025-12-09%20225433.png" alt="C++ Code Snippet" className="max-w-full h-auto mt-4 rounded border border-gray-300 shadow-sm" /></span>), options: ["ssssssssss", "ss", "compilation error", "sssss"], answer: 1, explanation: "This function prints a character 2 times. The confusion arises from the variable 'y'. There is a global 'y' (equals 10) and a local 'y' inside main (equals 5). The function is defined outside of main, so it does not see the local 'y'. It uses the global 'y' (10). The logic inside the function (likely dividing by 5) results in 2 iterations, printing 'ss'.", diagramType: "none" },
-            { id: 8, question: (<span>What is the output of the following code? <br /><img src="Screenshot%202025-12-09%20230116.png" alt="C++ Code Snippet" className="max-w-full h-auto mt-4 rounded border border-gray-300 shadow-sm" /></span>), options: ["123400", "123400- where(- represents an undefined number)", "1234000", "123--- where(- represents an undefined number)"], answer: 1, explanation: "1. The array size 'n' is calculated as 6. The array is initialized as {1, 2, 3, 4, 0, 0} (zeros fill the remaining space).\n2. The loop condition is 'i <= n' (i <= 6). This is an Off-by-One error. Valid indices are 0 to 5.\n3. The loop prints indices 0-5 correctly: '123400'.\n4. It then iterates one last time for i=6. Accessing arr[6] is out of bounds, resulting in undefined behavior (printing a garbage value).", diagramType: "none" },
-            { id: 9, question: (<span>What is the output of the following code? <br /><img src="Screenshot%202025-12-09%20230900.png" alt="C++ Code Snippet" className="max-w-full h-auto mt-4 rounded border border-gray-300 shadow-sm" /></span>), options: ["vector(2,3)", "2 3", "compilation error", "2,3"], answer: 2, explanation: "In C++, the `<<` operator is not overloaded for `std::vector` by default. You cannot directly pass a vector object to `cout`. You must iterate through the vector (e.g., using a loop) and print each element individually.", diagramType: "none" },
-            { id: 10, question: (<span>What is the output of the following code? <br /><img src="Screenshot%202025-12-09%20231543.png" alt="C++ Code Snippet" className="max-w-full h-auto mt-4 rounded border border-gray-300 shadow-sm" /></span>), options: ["compilation error", "garbage value", "0", "15", "20"], answer: 1, explanation: "The second argument passed to the function is `sizeof(x)`. Since `x` is an array of 10 integers (4 bytes each), `sizeof(x)` returns 40 (bytes), NOT 10 (elements). The loop iterates 40 times. Accessing indices 10 through 39 is out of bounds, retrieving undefined garbage values from memory.", diagramType: "none" }
+            { id: 7, question: (<span>What is the output of the following code? <br /><img src="Screenshot%202025-12-09%225433.png" alt="C++ Code Snippet" className="max-w-full h-auto mt-4 rounded border border-gray-300 shadow-sm" /></span>), options: ["ssssssssss", "ss", "compilation error", "sssss"], answer: 1, explanation: "This function prints a character 2 times. The confusion arises from the variable 'y'. There is a global 'y' (equals 10) and a local 'y' inside main (equals 5). The function is defined outside of main, so it does not see the local 'y'. It uses the global 'y' (10). The logic inside the function (likely dividing by 5) results in 2 iterations, printing 'ss'.", diagramType: "none" },
+            { id: 8, question: (<span>What is the output of the following code? <br /><img src="Screenshot%202025-12-09%230116.png" alt="C++ Code Snippet" className="max-w-full h-auto mt-4 rounded border border-gray-300 shadow-sm" /></span>), options: ["123400", "123400- where(- represents an undefined number)", "1234000", "123--- where(- represents an undefined number)"], answer: 1, explanation: "1. The array size 'n' is calculated as 6. The array is initialized as {1, 2, 3, 4, 0, 0} (zeros fill the remaining space).\n2. The loop condition is 'i <= n' (i <= 6). This is an Off-by-One error. Valid indices are 0 to 5.\n3. The loop prints indices 0-5 correctly: '123400'.\n4. It then iterates one last time for i=6. Accessing arr[6] is out of bounds, resulting in undefined behavior (printing a garbage value).", diagramType: "none" },
+            { id: 9, question: (<span>What is the output of the following code? <br /><img src="Screenshot%202025-12-09%230900.png" alt="C++ Code Snippet" className="max-w-full h-auto mt-4 rounded border border-gray-300 shadow-sm" /></span>), options: ["vector(2,3)", "2 3", "compilation error", "2,3"], answer: 2, explanation: "In C++, the `<<` operator is not overloaded for `std::vector` by default. You cannot directly pass a vector object to `cout`. You must iterate through the vector (e.g., using a loop) and print each element individually.", diagramType: "none" },
+            { id: 10, question: (<span>What is the output of the following code? <br /><img src="Screenshot%202025-12-09%231543.png" alt="C++ Code Snippet" className="max-w-full h-auto mt-4 rounded border border-gray-300 shadow-sm" /></span>), options: ["compilation error", "garbage value", "0", "15", "20"], answer: 1, explanation: "The second argument passed to the function is `sizeof(x)`. Since `x` is an array of 10 integers (4 bytes each), `sizeof(x)` returns 40 (bytes), NOT 10 (elements). The loop iterates 40 times. Accessing indices 10 through 39 is out of bounds, retrieving undefined garbage values from memory.", diagramType: "none" }
         ];
 
         // 3. QUANTUM PHYSICS DATA (Formatted Cleanly)
@@ -178,6 +179,114 @@
             }
         ];
 
+        // 4. MATH / DE EXAM DATA (NEW)
+        const mathData = [
+            {
+                id: 1,
+                question: (<span>Solve the following integration: <br/><br/> <span className="font-mono bg-gray-100 p-2">∫ from 0 to ∞ of (cos t - cos 3t) / (t e^t) dt</span></span>),
+                options: [
+                    (<span>(1/2) ln 3</span>),
+                    (<span>(1/2) ln 5</span>),
+                    (<span>ln 5</span>),
+                    (<span>0</span>)
+                ],
+                answer: 1,
+                explanation: (<span>Using Laplace properties: ∫ from 0 to ∞ of (f(t)/t) e^-st dt = ∫ from s to ∞ F(u) du.<br/>Here s=1. F(u) = L(cos t - cos 3t) = u/(u²+1) - u/(u²+9).<br/>Integral becomes (1/2)[ln(u²+1) - ln(u²+9)] evaluated from 1 to ∞.<br/>= (1/2) ln((u²+1)/(u²+9)). Limit at ∞ is ln(1)=0.<br/>Value at 1 is (1/2)ln(2/10) = (1/2)ln(1/5) = -(1/2)ln 5.<br/>Result = 0 - (-(1/2)ln 5) = (1/2)ln 5.</span>),
+                diagramType: "none"
+            },
+            {
+                id: 2,
+                question: (<span>If the solution of y'' + cy = sinh(ax) + e^(bx) is<br/> y = c₁e^(2x) + c₂e^(-2x) + (x/d)cosh(ax) + (1/5)e^(bx)<br/><br/>Find a, b, c, d. (Given a, b > 0)</span>),
+                options: [
+                    "a=1, b=2, c=4, d=2",
+                    "a=2, b=3, c=-4, d=4",
+                    "a=3, b=3, c=-4, d=5",
+                    "a=2, b=2, c=4, d=4"
+                ],
+                answer: 1,
+                explanation: (<span>1. Homogeneous solution c₁e^(2x) + c₂e^(-2x) implies roots ±2. Char eq: r² - 4 = 0. So DE is y'' - 4y = ... Thus c = -4.<br/>2. Particular solution term (x/d)cosh(ax) implies resonance with sinh(ax). This happens if 'a' matches a root. Roots are 2. So a = 2.<br/>3. Plug (1/5)e^(bx) into y'' - 4y = e^(bx): (1/5)(b² - 4)e^(bx) = e^(bx) => b² - 4 = 5 => b² = 9 => b = 3.<br/>4. Plug x/d cosh(2x) into y'' - 4y = sinh(2x). After simplifying, we get (4/d)sinh(2x) = sinh(2x). So d = 4.</span>),
+                diagramType: "none"
+            },
+            {
+                id: 3,
+                question: (<span>Find the Inverse Laplace Transform of: <br/><br/><span className="font-mono bg-gray-100 p-1">F(s) = s / (s² + 9)²</span></span>),
+                options: [
+                    (<span>(t/6) sin 3t</span>),
+                    (<span>(t/3) sin 3t</span>),
+                    (<span>t sin 3t</span>),
+                    (<span>(1/6) sin 3t</span>)
+                ],
+                answer: 0,
+                explanation: "Using the property L^-1 [ s/(s²+a²)² ] = (t/2a) sin(at). Here a=3. So, (t/(2*3)) sin 3t = (t/6) sin 3t.",
+                diagramType: "none"
+            },
+            {
+                id: 4,
+                question: (<span>Find the Inverse Laplace Transform of: <br/><br/><span className="font-mono bg-gray-100 p-1">F(s) = (3s + 6) / ((s - 4)(s² - 2s + 10))</span></span>),
+                options: [
+                    (<span>e^(4t) + e^t cos 3t</span>),
+                    (<span>e^(4t) - e^t cos 3t</span>),
+                    (<span>e^(4t) + e^t sin 3t</span>),
+                    (<span>e^t - e^(4t) cos 3t</span>)
+                ],
+                answer: 1,
+                explanation: "Partial fractions decomposition gives A/(s-4) + (Bs+C)/(s²-2s+10). Solving for constants yields A=1, B=-1, C=1. This simplifies to 1/(s-4) - (s-1)/((s-1)²+9). The inverse is e^(4t) - e^t cos 3t.",
+                diagramType: "none"
+            },
+            {
+                id: 5,
+                question: (<span>Solve the integral equation: <br/><br/><span className="font-mono bg-gray-100 p-1">x(t) - ∫[0 to t] e^(t-u) x(u) du = 2</span></span>),
+                options: [
+                    (<span>1 - e^(2t)</span>),
+                    (<span>2 + e^t</span>),
+                    (<span>2e^t cosh t</span>),
+                    (<span>e^(2t)</span>)
+                ],
+                answer: 2,
+                explanation: (<span>Apply Laplace Transform: X(s) - X(s)/(s-1) = 2/s.<br/>Factor out X(s): X(s) [ (s-2)/(s-1) ] = 2/s.<br/>So X(s) = (2(s-1)) / (s(s-2)).<br/>Solving by completing the square of the denominator:<br/>Denominator s(s-2) = s² - 2s. Complete square: (s-1)² - 1.<br/>X(s) = 2(s-1) / ((s-1)² - 1).<br/>This matches the form 2 * (s-a)/((s-a)² - k²) where a=1, k=1.<br/>Inverse Laplace of s/(s²-1) is cosh t.<br/>Using the shifting theorem L⁻¹[F(s-a)] = e^(at)f(t), we get x(t) = 2e^t cosh t.</span>),
+                diagramType: "none"
+            },
+            {
+                id: 6,
+                question: (<span>Find the impulse response h(t) of a control system where: <br/>Input x(t) = sin t <br/>Output y(t) = t sin t</span>),
+                options: [
+                    (<span>2 cos t</span>),
+                    (<span>2 sin t</span>),
+                    (<span>t cos t</span>),
+                    (<span>sin t</span>)
+                ],
+                answer: 0,
+                explanation: (<span>H(s) = Y(s)/X(s).<br/>L(sin t) = 1/(s²+1).<br/>L(t sin t) = -d/ds(1/(s²+1)) = 2s/(s²+1)².<br/>H(s) = [2s/(s²+1)²] / [1/(s²+1)] = 2s/(s²+1).<br/>h(t) = L⁻¹[2s/(s²+1)] = 2 cos t.</span>),
+                diagramType: "none"
+            },
+            {
+                id: 7,
+                question: (<span>Consider the differential equation y' = -2y + 4e^(-x) with y(0)=2.<br/>Find the exact solution y(x) and calculate y(0.2).</span>),
+                options: [
+                    "y(0.2) ≈ 2.155",
+                    "y(0.2) ≈ 1.934",
+                    "y(0.2) ≈ 1.876",
+                    "y(0.2) ≈ 2.000"
+                ],
+                answer: 1,
+                explanation: (<span>Linear DE: y' + 2y = 4e^(-x). Integrating factor = e^(2x).<br/>d(y e^(2x)) = 4e^x dx => y e^(2x) = 4e^x + C.<br/>y = 4e^(-x) + Ce^(-2x).<br/>y(0)=2 => 4+C=2 => C=-2.<br/>Exact solution: y = 4e^(-x) - 2e^(-2x).<br/>y(0.2) = 4(0.8187) - 2(0.6703) = 3.2748 - 1.3406 = 1.9342.</span>),
+                diagramType: "none"
+            },
+            {
+                id: 8,
+                question: (<span>For the DE y' = -2y + 4e^(-x), y(0)=2.<br/>Use Euler's method with step size h=0.1 to estimate y(0.2).</span>),
+                options: [
+                    "1.962",
+                    "1.934",
+                    "2.000",
+                    "1.855"
+                ],
+                answer: 0,
+                explanation: (<span>y_new = y_old + h * f(x, y).<br/>Step 1 (x=0): y(0.1) ≈ 2 + 0.1(-2(2) + 4(1)) = 2 + 0 = 2.<br/>Step 2 (x=0.1): y(0.2) ≈ 2 + 0.1(-2(2) + 4e^(-0.1)).<br/>4e^(-0.1) ≈ 3.619. f(0.1, 2) = -4 + 3.619 = -0.381.<br/>y(0.2) ≈ 2 + 0.1(-0.381) = 2 - 0.0381 = 1.9619.</span>),
+                diagramType: "none"
+            }
+        ];
+
         // --- APP COMPONENT ---
 
         function App() {
@@ -189,17 +298,24 @@
             const [showResults, setShowResults] = useState(false);
             const [pdfFile, setPdfFile] = useState(null);
             
+            // New state for Math sub-navigation
+            const [mathSection, setMathSection] = useState(null); 
+            
             // Determine which dataset to use
             let currentData = [];
             if (activeSubject === 'logic') currentData = logicData;
             if (activeSubject === 'programming') currentData = programmingData;
             if (activeSubject === 'quantum') currentData = quantumData;
-            // Math data is handled via PDF embedding, not questions array
+            if (activeSubject === 'math') currentData = mathData; // Add math data to quiz pool
 
-            const CHUNK_SIZE = 6;
+            // Adjust chunk size for math since it has fewer questions for now
+            const CHUNK_SIZE = activeSubject === 'math' ? 8 : 6;
+            
             const chunks = [];
-            for (let i = 0; i < currentData.length; i += CHUNK_SIZE) {
-                chunks.push(currentData.slice(i, i + CHUNK_SIZE));
+            if (currentData.length > 0) {
+                for (let i = 0; i < currentData.length; i += CHUNK_SIZE) {
+                    chunks.push(currentData.slice(i, i + CHUNK_SIZE));
+                }
             }
 
             const handleStartQuiz = () => {
@@ -209,12 +325,25 @@
                 setShowResults(false);
             };
 
+            const handleMathExamStart = () => {
+                // Special handler to start the math exam directly from the card
+                setActiveSubject('math');
+                setMathSection('exams'); // Keep context
+                setMode('quiz');
+                setCurrentQuizChunk(0);
+                setQuizState({});
+                setShowResults(false);
+            }
+
             const handleAnswer = (qId, optionIdx) => {
                 setQuizState(prev => ({ ...prev, [qId]: optionIdx }));
             };
 
             const calculateScore = () => {
                 let score = 0;
+                // Guard clause if chunks are empty
+                if (!chunks || chunks.length === 0) return 0;
+                
                 const currentQuestions = chunks[currentQuizChunk];
                 currentQuestions.forEach(q => {
                     if (quizState[q.id] === q.answer) score++;
@@ -240,14 +369,15 @@
                 setQuizState({});
                 setShowResults(false);
                 setPdfFile(null);
+                setMathSection(null);
             }
 
             // -- SUBJECT SELECTION SCREEN --
             if (!activeSubject) {
                 return (
                     <div className="min-h-screen bg-gray-50 flex flex-col items-center justify-center p-6 relative">
-                         {/* Floating Feedback Button (Visible on Selection Screen too) */}
-                         <a 
+                          {/* Floating Feedback Button (Visible on Selection Screen too) */}
+                          <a 
                             href="https://docs.google.com/forms/d/e/1FAIpQLSdjFjiMzpR4qAacIY9r2SoqiPgOeTF6uQ1I8JRFudKBWUSY4A/viewform?usp=publish-editor"
                             target="_blank"
                             rel="noopener noreferrer"
@@ -312,7 +442,7 @@
 
                             {/* Differential Equations Card (NEW) */}
                             <div 
-                                onClick={() => { setActiveSubject('math'); setMode('welcome'); setPdfFile(null); }}
+                                onClick={() => { setActiveSubject('math'); setMode('welcome'); setPdfFile(null); setMathSection(null); }}
                                 className="bg-white p-8 rounded-2xl shadow-lg border border-gray-100 hover:shadow-2xl hover:border-orange-200 hover:-translate-y-1 transition-all cursor-pointer group"
                             >
                                 <div className="bg-orange-100 w-16 h-16 rounded-full flex items-center justify-center text-orange-600 mb-6 group-hover:scale-110 transition-transform">
@@ -378,6 +508,15 @@
                                         </button>
                                     </>
                                 )}
+                                {/* For Math, we might just have the Home button since it has internal nav, but we can allow Study/Quiz mode if we want generic browsing */}
+                                {activeSubject === 'math' && mode !== 'welcome' && (
+                                     <button 
+                                        onClick={() => {setMode('welcome'); setPdfFile(null); setMathSection(null);}}
+                                        className="px-3 py-1 rounded transition hover:bg-white/20"
+                                    >
+                                        Return to Menu
+                                    </button>
+                                )}
                             </nav>
                         </div>
                     </header>
@@ -410,37 +549,87 @@
                             </div>
                         )}
 
-                        {/* MATH / DIFFERENTIAL EQUATIONS SPECIAL VIEW */}
-                        {activeSubject === 'math' && (
+                        {/* MATH / DIFFERENTIAL EQUATIONS SPECIAL VIEW (Menu Mode) */}
+                        {activeSubject === 'math' && mode === 'welcome' && (
                             <div className="animate-fadeIn">
                                 {!pdfFile ? (
-                                    <div className="text-center py-10">
-                                        <h2 className="text-3xl font-bold text-gray-900 mb-8">Differential Equations & Numerical Analysis</h2>
-                                        <p className="text-gray-500 mb-10">Select a document to view solutions.</p>
-                                        
-                                        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                                            <div 
-                                                onClick={() => setPdfFile('Screenshot 2025-12-13 001656 (1).pdf')}
-                                                className="bg-white p-8 rounded-xl shadow-md border border-gray-100 hover:border-orange-400 hover:shadow-xl cursor-pointer transition flex flex-col items-center"
-                                            >
-                                                <div className="bg-orange-50 p-4 rounded-full text-orange-600 mb-4">
-                                                    <Icons.FileText />
-                                                </div>
-                                                <h3 className="text-xl font-bold mb-2">Major Task Part (2)</h3>
-                                                <p className="text-sm text-gray-400">View Solutions PDF</p>
-                                            </div>
+                                    <div className="text-center py-20">
+                                        <h2 className="text-4xl font-bold text-gray-900 mb-6">Differential Equations & Numerical Analysis</h2>
+                                        <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
+                                            Practice solving Differential Equations, Laplace Transforms, and Numerical Methods.
+                                        </p>
 
-                                            <div 
-                                                onClick={() => setPdfFile('PHM213s_FormativeAssignment.key (1).pdf')}
-                                                className="bg-white p-8 rounded-xl shadow-md border border-gray-100 hover:border-orange-400 hover:shadow-xl cursor-pointer transition flex flex-col items-center"
-                                            >
-                                                <div className="bg-orange-50 p-4 rounded-full text-orange-600 mb-4">
-                                                    <Icons.FileText />
-                                                </div>
-                                                <h3 className="text-xl font-bold mb-2">Formative Assignment</h3>
-                                                <p className="text-sm text-gray-400">View Solutions PDF</p>
-                                            </div>
+                                        {/* Main Action Buttons (Study/Quiz) */}
+                                        <div className="flex flex-col md:flex-row justify-center gap-6 mb-16">
+                                            <button onClick={() => setMode('study')} className="flex items-center justify-center gap-2 bg-orange-600 hover:bg-orange-700 text-white px-8 py-4 rounded-lg shadow-lg transition text-lg font-semibold">
+                                                <Icons.BookOpen /> Review Explanations
+                                            </button>
+                                            <button onClick={handleStartQuiz} className="flex items-center justify-center gap-2 bg-gray-800 text-white px-8 py-4 rounded-lg shadow-lg hover:bg-black transition text-lg font-semibold">
+                                                <Icons.Play /> Start Quiz
+                                            </button>
                                         </div>
+
+                                        {/* Assignments Section */}
+                                        {!mathSection ? (
+                                            <div className="max-w-4xl mx-auto">
+                                                <h3 className="text-2xl font-bold text-gray-800 mb-6 text-left flex items-center gap-2 border-b pb-2">
+                                                    <Icons.FileText className="text-orange-600" /> 
+                                                    Assignment Resources
+                                                </h3>
+                                                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                                     {/* Folder Card for Assignments */}
+                                                     <div 
+                                                        onClick={() => setMathSection('assignments')}
+                                                        className="bg-white p-6 rounded-xl shadow-md border border-gray-100 hover:border-orange-400 hover:shadow-xl cursor-pointer transition flex items-center gap-4"
+                                                    >
+                                                        <div className="bg-orange-50 p-4 rounded-full text-orange-600">
+                                                            <Icons.FileText />
+                                                        </div>
+                                                        <div className="text-left">
+                                                            <h3 className="text-xl font-bold">Assignments PDF</h3>
+                                                            <p className="text-sm text-gray-400">View Major Tasks & Formative</p>
+                                                        </div>
+                                                        <div className="ml-auto text-orange-400">
+                                                            <Icons.ArrowRight />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        ) : (
+                                            /* Assignments List View */
+                                            <div className="max-w-4xl mx-auto text-left">
+                                                <button 
+                                                    onClick={() => setMathSection(null)}
+                                                    className="mb-6 flex items-center gap-2 text-orange-600 font-semibold hover:underline"
+                                                >
+                                                    ← Back to Menu
+                                                </button>
+                                                <h3 className="text-2xl font-bold text-gray-800 mb-6">Assignment PDFs</h3>
+                                                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                                    <div 
+                                                        onClick={() => setPdfFile('Screenshot 2025-12-13 001656 (1).pdf')}
+                                                        className="bg-white p-8 rounded-xl shadow-md border border-gray-100 hover:border-orange-400 hover:shadow-xl cursor-pointer transition flex flex-col items-center"
+                                                    >
+                                                        <div className="bg-orange-50 p-4 rounded-full text-orange-600 mb-4">
+                                                            <Icons.FileText />
+                                                        </div>
+                                                        <h3 className="text-xl font-bold mb-2">Major Task Part (2)</h3>
+                                                        <p className="text-sm text-gray-400">View Solutions PDF</p>
+                                                    </div>
+
+                                                    <div 
+                                                        onClick={() => setPdfFile('PHM213s_FormativeAssignment.key (1).pdf')}
+                                                        className="bg-white p-8 rounded-xl shadow-md border border-gray-100 hover:border-orange-400 hover:shadow-xl cursor-pointer transition flex flex-col items-center"
+                                                    >
+                                                        <div className="bg-orange-50 p-4 rounded-full text-orange-600 mb-4">
+                                                            <Icons.FileText />
+                                                        </div>
+                                                        <h3 className="text-xl font-bold mb-2">Formative Assignment</h3>
+                                                        <p className="text-sm text-gray-400">View Solutions PDF</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        )}
                                     </div>
                                 ) : (
                                     <div className="w-full h-full flex flex-col">
@@ -464,9 +653,9 @@
                         )}
 
                         {/* STUDY MODE (Standard Subjects) */}
-                        {mode === 'study' && activeSubject !== 'math' && (
+                        {mode === 'study' && (
                             <div className="space-y-8 animate-fadeIn">
-                                <div className={`bg-blue-50 border-l-4 ${activeSubject === 'logic' ? 'border-blue-500 text-blue-700' : activeSubject === 'programming' ? 'border-emerald-500 text-emerald-700' : 'border-purple-500 text-purple-700'} p-4 mb-6`}>
+                                <div className={`bg-blue-50 border-l-4 ${activeSubject === 'logic' ? 'border-blue-500 text-blue-700' : activeSubject === 'programming' ? 'border-emerald-500 text-emerald-700' : activeSubject === 'quantum' ? 'border-purple-500 text-purple-700' : 'border-orange-500 text-orange-700'} p-4 mb-6`}>
                                     <p>
                                         <strong>Study Guide:</strong> Review all questions with detailed answers below.
                                     </p>
@@ -529,11 +718,13 @@
                             </div>
                         )}
 
-                        {/* QUIZ MODE (Standard Subjects) */}
-                        {mode === 'quiz' && activeSubject !== 'math' && (
+                        {/* QUIZ MODE (All Subjects including Math) */}
+                        {mode === 'quiz' && chunks.length > 0 && (
                             <div className="animate-fadeIn">
                                 <div className="flex justify-between items-center mb-6">
-                                    <h2 className="text-2xl font-bold">Quiz Set {currentQuizChunk + 1}</h2>
+                                    <h2 className="text-2xl font-bold">
+                                        {activeSubject === 'math' ? "Fall 2022 Exam" : `Quiz Set ${currentQuizChunk + 1}`}
+                                    </h2>
                                     {showResults && (
                                         <div className="flex items-center gap-2 bg-yellow-100 text-yellow-800 px-4 py-2 rounded-full font-bold">
                                             <Icons.Award />
